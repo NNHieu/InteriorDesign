@@ -417,9 +417,6 @@ public class FirstPersonAIO : MonoBehaviour
         #endregion
 
         #region Movement Settings - FixedUpdate
-        if (selectionManager.IsInMode(SelectionManager.SelectionMode.SelectMode))
-        {
-
             if (useStamina)
             {
                 isSprinting = Input.GetKey(sprintKey) && !isCrouching && staminaInternal > 0 && (Mathf.Abs(fps_Rigidbody.velocity.x) > 0.01f || Mathf.Abs(fps_Rigidbody.velocity.z) > 0.01f);
@@ -799,7 +796,7 @@ public class FirstPersonAIO : MonoBehaviour
                 advanced.isTouchingFlat = false;
             }
             #endregion
-        }
+        
 
     }
 

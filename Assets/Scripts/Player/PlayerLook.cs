@@ -27,8 +27,8 @@ public class PlayerLook : MonoBehaviour
     public bool autoCrosshair = false;
     public bool drawStaminaMeter = true;
     float smoothRef;
-    Image StaminaMeter;
-    Image StaminaMeterBG;
+    // Image StaminaMeter;
+    // Image StaminaMeterBG;
     public Sprite Crosshair;
     public Vector3 targetAngles;
     private Vector3 followAngles;

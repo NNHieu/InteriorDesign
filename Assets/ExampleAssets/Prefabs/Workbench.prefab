@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3122512547768572924}
   - component: {fileID: 3112971748881196958}
   - component: {fileID: 3104699738436078498}
+  - component: {fileID: 8615188415601903584}
   m_Layer: 0
   m_Name: Magnetic Level
   m_TagString: Untagged
@@ -82,6 +83,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8615188415601903584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116565385739550694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ebe21c7a4850a196b40d3d9424695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3116566584170727252
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +286,7 @@ GameObject:
   - component: {fileID: 3122279492874581152}
   - component: {fileID: 3113039339055870060}
   - component: {fileID: 3103406845835155120}
+  - component: {fileID: 4844764243826288875}
   m_Layer: 0
   m_Name: Safety Goggles
   m_TagString: Untagged
@@ -344,6 +358,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4844764243826288875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116799582357039764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ebe21c7a4850a196b40d3d9424695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3116985835048169174
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +381,7 @@ GameObject:
   - component: {fileID: 3122398394351823804}
   - component: {fileID: 3115800887613591026}
   - component: {fileID: 3104157617231123184}
+  - component: {fileID: 3298674595578119152}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -423,6 +450,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3298674595578119152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116985835048169174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ebe21c7a4850a196b40d3d9424695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3117216213805114940
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +473,7 @@ GameObject:
   - component: {fileID: 3122603148334812230}
   - component: {fileID: 3112990719921290092}
   - component: {fileID: 3104944534080870354}
+  - component: {fileID: 4399821374279177565}
   m_Layer: 0
   m_Name: Safety Hat
   m_TagString: Untagged
@@ -502,6 +542,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4399821374279177565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117216213805114940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ebe21c7a4850a196b40d3d9424695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3117221827256685120
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,11 +640,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3119308079644534864}
     m_Modifications:
-    - target: {fileID: 5661467807466071258, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
-        type: 3}
-      propertyPath: m_Name
-      value: Workbench_LOD1
-      objectReference: {fileID: 0}
     - target: {fileID: 5658053064983556274, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -648,6 +695,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5661467807466071258, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
+        type: 3}
+      propertyPath: m_Name
+      value: Workbench_LOD1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38d5ecfa2b93c4095b4cc5d4a590e676, type: 3}
 --- !u!23 &3104244537775875718 stripped
@@ -674,15 +726,15 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 7336795078047825314}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3105042399987932030 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5676466122297272028, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
-    type: 3}
-  m_PrefabInstance: {fileID: 7336795078047825314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3122394256887008528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5658053064983556274, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
+    type: 3}
+  m_PrefabInstance: {fileID: 7336795078047825314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3105042399987932030 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5676466122297272028, guid: 38d5ecfa2b93c4095b4cc5d4a590e676,
     type: 3}
   m_PrefabInstance: {fileID: 7336795078047825314}
   m_PrefabAsset: {fileID: 0}
@@ -693,11 +745,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3119308079644534864}
     m_Modifications:
-    - target: {fileID: 4654706891235022486, guid: c0adcaeba3022437293536832628fdf8,
-        type: 3}
-      propertyPath: m_Name
-      value: Workbench_LOD0
-      objectReference: {fileID: 0}
     - target: {fileID: 4652357657376429546, guid: c0adcaeba3022437293536832628fdf8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -753,8 +800,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4654706891235022486, guid: c0adcaeba3022437293536832628fdf8,
+        type: 3}
+      propertyPath: m_Name
+      value: Workbench_LOD0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0adcaeba3022437293536832628fdf8, type: 3}
+--- !u!4 &3119361965510487000 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4652357657376429546, guid: c0adcaeba3022437293536832628fdf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7771609378857188914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3104831731306437092 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4669346124161738710, guid: c0adcaeba3022437293536832628fdf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7771609378857188914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &3104775600728423106 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4669156908762383600, guid: c0adcaeba3022437293536832628fdf8,
@@ -773,21 +837,9 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 7771609378857188914}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3104831731306437092 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4669346124161738710, guid: c0adcaeba3022437293536832628fdf8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7771609378857188914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &3103437077802874286 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4669056446650321820, guid: c0adcaeba3022437293536832628fdf8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7771609378857188914}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3119361965510487000 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4652357657376429546, guid: c0adcaeba3022437293536832628fdf8,
     type: 3}
   m_PrefabInstance: {fileID: 7771609378857188914}
   m_PrefabAsset: {fileID: 0}

@@ -1,14 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
 
     // Setting
-    public Camera playerCamera;
+    public Camera freeCamera;
+    public FirstPersonAIO player;
     [SerializeField] private Material highlightMaterial;
     [SerializeField] private Material selectedMaterial;
+
+    public float outlineWidth = 10f;
+    public float OutlineWidth
+    {
+        get; set;
+    }
+
+    // Setting UI
+    public Text uitext_selectMode;
+
+
 
     private Material originalMaterial;
     private SelectableScript selectedObject;
@@ -16,14 +29,32 @@ public class SelectionManager : MonoBehaviour
 
     // State variable
     private bool hasSelected = false;
-    private SelectionMode currentMode;
+    
+    public enum SelMode
+    {
+        SelectMode, EditMode, NoninteractMode
+    }
+    private SelMode _selectionMode;
+
+
+    public enum CamMode
+    {
+        FreeMode, InGameMode
+    }
+    private CamMode _cameraMode;
+
+
+    public enum OpMode
+    {
+        None, Translation, Rotation
+    }
+    private OpMode _operationMode;
+
 
     // Const
     private Vector3 screenMidPoint = new Vector3(0.5f, 0.5f, 0);
-    public enum SelectionMode
-    {
-        SelectMode, EditMode
-    }
+    
+
 
     // Others
     private List<SelectableScript> selectedObjectList = new List<SelectableScript>();
@@ -31,7 +62,9 @@ public class SelectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentMode = SelectionMode.SelectMode;
+        SelectionMode = SelMode.SelectMode;
+        OperationMode = OpMode.None;
+        CameraMode = CamMode.FreeMode;
     }
 
     // Update is called once per frame
@@ -42,12 +75,25 @@ public class SelectionManager : MonoBehaviour
         HandleKeyInput();
     }
 
+
     void trackHighLightObject()
     {
+        if (SelectionMode == SelMode.NoninteractMode) return;
 
         RaycastHit hit;
+        bool isHit = false;
         SelectableScript newPointToObject = null;
-        if (Physics.Raycast(playerCamera.ViewportPointToRay(screenMidPoint), out hit))
+        Debug.Log(freeCamera.ScreenPointToRay(Input.mousePosition));
+        if(CameraMode == CamMode.FreeMode)
+        {
+            isHit = Physics.Raycast(freeCamera.ScreenPointToRay(Input.mousePosition), out hit);
+        } else
+        {
+            Debug.Log("Ingame raycast");
+            isHit = Physics.Raycast(player.playerCamera.ViewportPointToRay(screenMidPoint), out hit);
+        }
+
+        if (isHit)
         {
             // Debug.Log(hit.transform.name);   
             Transform hitTransform = hit.transform;
@@ -75,11 +121,7 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    public bool IsInMode(SelectionMode mode)
-    {
-        return currentMode == mode;
-    }
-
+ 
     void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(0) && !ScriptableObject.ReferenceEquals(selectedObject, null))
@@ -100,15 +142,92 @@ public class SelectionManager : MonoBehaviour
 
     void HandleKeyInput()
     {
-        if (Input.GetKey("e"))
+        if (Input.GetKeyDown("e"))
         {
-            currentMode = SelectionMode.EditMode;
-            Debug.Log("Change to EditMode");
+            SelectionMode = SelMode.EditMode;
         }
-        else if (Input.GetKey("q"))
+        else if (Input.GetKeyDown("q")) { 
+
+            SelectionMode = SelMode.SelectMode;
+
+        }
+            uitext_selectMode.text = SelectionMode.ToString("G");
+
+        if (Input.GetKeyDown("r") && SelectionMode == SelMode.EditMode && selectedObjectList.Count > 0)
         {
-            currentMode = SelectionMode.SelectMode;
-            Debug.Log("Change to SelectMode");
+            OperationMode = OpMode.Translation;
+        }
+
+        if (Input.GetKeyDown("f"))
+        {
+            ToggleCamMode();
         }
     }
+
+    public List<SelectableScript> GetSelected()
+    {
+        return selectedObjectList;
+    }
+
+    #region Set Get State
+    public SelMode SelectionMode
+    {
+        private set
+        {
+            if (value == SelMode.SelectMode)
+            {
+                _operationMode = OpMode.None;
+            }
+            _selectionMode = value;
+        }
+        get
+        {
+            return _selectionMode;
+        }
+        
+    }
+
+    public CamMode CameraMode
+    {
+        private set
+        {
+            _cameraMode = value;
+            Debug.Log("Cur cam: " + value.ToString("G"));
+            if(_cameraMode == CamMode.FreeMode)
+            {
+                player.ControllerPause();
+                player.playerCamera.gameObject.SetActive(false);
+                freeCamera.gameObject.SetActive(true);
+            } else if(_cameraMode == CamMode.InGameMode)
+            {
+                player.ControllerPause();
+                player.playerCamera.gameObject.SetActive(true);
+                freeCamera.gameObject.SetActive(false);
+            }
+        }
+        get
+        {
+            return _cameraMode;
+        }
+    }
+
+    private void ToggleCamMode()
+    {
+        CameraMode = (CamMode)(1 - (int)CameraMode);
+    }
+
+    public OpMode OperationMode
+    {
+        private set
+        {
+            _operationMode = value;
+            Debug.Log("Cur Op: " + value.ToString("G"));
+        }
+        get
+        {
+            return _operationMode;
+        }
+    }
+
+    #endregion
 }
