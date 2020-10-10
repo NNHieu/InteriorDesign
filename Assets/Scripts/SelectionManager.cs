@@ -7,18 +7,17 @@ public class SelectionManager : MonoBehaviour
 {
 
     // Setting
+    [Header("Camera Setting")]
     public Camera freeCamera;
     public FirstPersonAIO player;
-    [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material selectedMaterial;
-
+    
+    [Header("Highlight Setting")]
     public float outlineWidth = 10f;
-    public float OutlineWidth
-    {
-        get; set;
-    }
 
-    // Setting UI
+    [Header("Operation Scripts")]
+    public TransformManager transformManager;
+
+    [Header("UI Setting")]
     public Text uitext_selectMode;
 
 
@@ -46,7 +45,7 @@ public class SelectionManager : MonoBehaviour
 
     public enum OpMode
     {
-        None, Translation, Rotation
+        None, Transform, Rotation
     }
     private OpMode _operationMode;
 
@@ -75,6 +74,18 @@ public class SelectionManager : MonoBehaviour
         HandleKeyInput();
     }
 
+    public Ray ScreenPointToRay()
+    {
+        if (CameraMode == CamMode.FreeMode)
+        {
+            return freeCamera.ScreenPointToRay(Input.mousePosition);
+        }
+        else
+        {
+            return player.playerCamera.ViewportPointToRay(screenMidPoint);
+        }
+    }
+
 
     void trackHighLightObject()
     {
@@ -83,7 +94,7 @@ public class SelectionManager : MonoBehaviour
         RaycastHit hit;
         bool isHit = false;
         SelectableScript newPointToObject = null;
-        Debug.Log(freeCamera.ScreenPointToRay(Input.mousePosition));
+        //Debug.Log(freeCamera.ScreenPointToRay(Input.mousePosition));
         if(CameraMode == CamMode.FreeMode)
         {
             isHit = Physics.Raycast(freeCamera.ScreenPointToRay(Input.mousePosition), out hit);
@@ -111,7 +122,7 @@ public class SelectionManager : MonoBehaviour
             if (!SelectableScript.ReferenceEquals(newPointToObject, null))
             {
                 // Neu tro toi object moi
-                newPointToObject.HandlePointed(highlightMaterial);
+                newPointToObject.HandlePointed();
                 selectedObject = newPointToObject;
             }
             else
@@ -129,12 +140,12 @@ public class SelectionManager : MonoBehaviour
             if (selectedObject.IsSelected())
             {
 
-                selectedObject.HandleDeselect(highlightMaterial);
+                selectedObject.HandleDeselect();
                 selectedObjectList.Remove(selectedObject);
             }
             else
             {
-                selectedObject.HandleSelect(selectedMaterial);
+                selectedObject.HandleSelect();
                 selectedObjectList.Add(selectedObject);
             }
         }
@@ -145,6 +156,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             SelectionMode = SelMode.EditMode;
+            transformManager.init(this);
         }
         else if (Input.GetKeyDown("q")) { 
 
@@ -153,10 +165,10 @@ public class SelectionManager : MonoBehaviour
         }
             uitext_selectMode.text = SelectionMode.ToString("G");
 
-        if (Input.GetKeyDown("r") && SelectionMode == SelMode.EditMode && selectedObjectList.Count > 0)
-        {
-            OperationMode = OpMode.Translation;
-        }
+        //if (Input.GetKeyDown("r") && SelectionMode == SelMode.EditMode && selectedObjectList.Count > 0)
+        //{
+        //    OperationMode = OpMode.Transform;
+        //}
 
         if (Input.GetKeyDown("f"))
         {
@@ -169,7 +181,17 @@ public class SelectionManager : MonoBehaviour
         return selectedObjectList;
     }
 
+    public bool IsSelectedListEmpty()
+    {
+        return selectedObjectList.Count == 0;
+    }
+
     #region Set Get State
+    public float OutlineWidth
+    {
+        get; set;
+    }
+
     public SelMode SelectionMode
     {
         private set

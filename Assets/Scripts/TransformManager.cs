@@ -3,73 +3,132 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class TransformManager : MonoBehaviour
 {
     // Setting
-    public SelectionManager selectionManager;
     public float unitTransform = 0.1f;
-    private bool[] activeAxis = new bool[3];
     private Vector3 baseDirection;
-    [SerializeField] private Toggle uitoggle_XAxis, uitoggle_YAxis, uitoggle_ZAxis;
-    private Toggle[] uitoggle_Axises;
+
+    // 
+        
+    private SelectionManager selectionManager;
 
     // Const
     private Vector3[] vectors = new Vector3[3] { Vector3.right, Vector3.up, Vector3.forward };
+    private Coordinate coordinate;
+
+
+    // State
+    public enum OpMode
+    {
+        None, Translation, Rotation
+    }
+    private OpMode _operationMode;
+    private Ray oldRay;
 
     private void Awake()
     {
-        uitoggle_Axises = new Toggle[3] { uitoggle_XAxis, uitoggle_YAxis, uitoggle_ZAxis };
+        OperationMode = OpMode.None;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        coordinate = GameObject.Find("/CoordinateModel").GetComponent<Coordinate>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleInput();   
+        if(OperationMode == OpMode.Translation)
+            HandleInput();   
+    }
+
+    public void init(SelectionManager selectionManager)
+    {
+        this.selectionManager = selectionManager;
+        OperationMode = OpMode.Translation;
+        oldRay = selectionManager.ScreenPointToRay();
+        if (selectionManager.GetSelected().Count > 0)
+            coordinate.bindTo(selectionManager.GetSelected()[0].transform);
+    }
+
+    public void stop()
+    {
+        OperationMode = OpMode.None;
     }
 
     void HandleInput()
     {
-        if (selectionManager.OperationMode == SelectionManager.OpMode.Translation) 
+        if (Input.GetKeyDown("x") || Input.GetKeyUp("x"))
         {
-            Debug.Log("Translation Manager Running");
-            if (Input.GetKeyDown("x"))
-            {
-                ToggleActiveAxis(0);
-            }
-            if (Input.GetKeyDown("y"))
-            {
-                ToggleActiveAxis(1);
-            }
-            if (Input.GetKeyDown("z"))
-            {
-                ToggleActiveAxis(2);
-            }
-            Vector2 mScrollDelta = Input.mouseScrollDelta;
-            if(mScrollDelta.y != 0)
-            {
-                MoveAllSelected(mScrollDelta.y);
-            }
+            ToggleActiveAxis(0);
+        }
+        if (Input.GetKeyDown("y") || Input.GetKeyUp("y"))
+        {
+            ToggleActiveAxis(1);
+        }
+        if (Input.GetKeyDown("z") || Input.GetKeyUp("z"))
+        {
+            ToggleActiveAxis(2);
+        }
+        if (!selectionManager.IsSelectedListEmpty())
+        {
+            MoveAllSelected();
         }
     }
 
-    void MoveAllSelected(float delta)
+
+    void MoveAllSelected()
     {
-        foreach(SelectableScript s in selectionManager.GetSelected())
+        if (coordinate.HasActiveAxis())
         {
-            s.GetComponent<Translationable>().HandleTranslation(baseDirection *unitTransform* delta);
+            List<SelectableScript> listObject = selectionManager.GetSelected();
+            Ray ray = selectionManager.ScreenPointToRay();
+            Vector3 delta = ray.direction - oldRay.direction;
+            oldRay = ray; 
+            Vector3 objPos = listObject[listObject.Count - 1].transform.position;
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+            
+            Vector3 projection = Vector3.zero;
+            if (coordinate.SumActive() == 2)
+            {
+                coordinate.GetProjecttion(objPos, ray, coordinate.GetOnlyNonactive(),ref projection);
+                foreach (SelectableScript s in selectionManager.GetSelected())
+                {
+                    s.GetComponent<Translationable>().HandleTranslation(projection - objPos);
+                }
+            } else if(coordinate.SumActive() == 1)
+            {
+                coordinate.GetProjecttion(objPos, ray, coordinate.MaxAbsComponent(Vector3.Scale((objPos - ray.origin), Vector3.one - coordinate.ActiveToVector())),ref projection);
+                foreach (SelectableScript s in selectionManager.GetSelected())
+                {
+                    Debug.Log(Vector3.Scale((projection - objPos), coordinate.ActiveToVector()));
+                    s.GetComponent<Translationable>().HandleTranslation( Vector3.Scale((projection - objPos), coordinate.ActiveToVector()));
+                }
+            }
         }
+        
     }
 
     void ToggleActiveAxis(int id)
     {
-        activeAxis[id] = !activeAxis[id];
-        uitoggle_Axises[id].isOn = activeAxis[id];
-        baseDirection += (activeAxis[id] ? 1 : -1) * vectors[id];
+        coordinate.ToggleActiveAxis(id);
+    }
+
+
+    // Get Set
+    public OpMode OperationMode
+    {
+        private set
+        {
+            _operationMode = value;
+            Debug.Log("Cur Op: " + value.ToString("G"));
+        }
+        get
+        {
+            return _operationMode;
+        }
     }
 }

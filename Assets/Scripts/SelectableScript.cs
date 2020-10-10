@@ -15,10 +15,10 @@ public class SelectableScript : MonoBehaviour
     private bool _pointed = false;
 
 
-    private Outline highlightOutline;
+    protected Outline highlightOutline;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         selectionManager = FindObjectOfType<SelectionManager>();
 
@@ -54,7 +54,7 @@ public class SelectableScript : MonoBehaviour
         return _pointed;
     }
 
-    public void HandleSelect(Material selectedMaterial)
+    public void HandleSelect()
     {
         _selected = true;
         if (hasRenderer)
@@ -63,7 +63,7 @@ public class SelectableScript : MonoBehaviour
         }
     }
 
-    public void HandleDeselect(Material highlightMaterial)
+    public void HandleDeselect()
     {
         _selected = false;
         if (hasRenderer)
@@ -72,7 +72,7 @@ public class SelectableScript : MonoBehaviour
         }
     }
 
-    public void HandlePointed(Material highlightMaterial)
+    public void HandlePointed()
     {
         _pointed = true;
         if (!_selected && hasRenderer)
