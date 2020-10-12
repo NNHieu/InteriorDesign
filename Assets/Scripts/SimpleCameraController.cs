@@ -7,7 +7,8 @@
 using UnityEngine;
 
 namespace UnityTemplateProjects
-{
+{   
+
     public class SimpleCameraController : MonoBehaviour
     {
         class CameraState
@@ -59,6 +60,9 @@ namespace UnityTemplateProjects
         CameraState m_TargetCameraState = new CameraState();
         CameraState m_InterpolatingCameraState = new CameraState();
 
+
+        [SerializeField] private GameObject player;
+
         [Header("Movement Settings")]
         [Tooltip("Exponential boost factor on translation, controllable by mouse wheel.")]
         public float boost = 3.5f;
@@ -78,8 +82,9 @@ namespace UnityTemplateProjects
 
         void OnEnable()
         {
-            m_TargetCameraState.SetFromTransform(transform);
-            m_InterpolatingCameraState.SetFromTransform(transform);
+            if (player == null) player = this.gameObject;
+            m_TargetCameraState.SetFromTransform(player.transform);
+            m_InterpolatingCameraState.SetFromTransform(player.transform);
         }
 
         Vector3 GetInputTranslationDirection()
@@ -175,7 +180,7 @@ namespace UnityTemplateProjects
             var rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
             m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
 
-            m_InterpolatingCameraState.UpdateTransform(transform);
+            m_InterpolatingCameraState.UpdateTransform(player.transform);
         }
     }
 
