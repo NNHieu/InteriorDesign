@@ -160,7 +160,7 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             SelectionMode = SelMode.EditMode;
-            transformManager.init(this);
+            //transformManager.init(this);
             foreach (SelectableScript s in allSelectable)
             {
                 Rigidbody rigidbody = s.GetComponent<Rigidbody>();

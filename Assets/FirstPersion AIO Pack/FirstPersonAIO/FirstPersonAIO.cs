@@ -282,6 +282,7 @@ public class FirstPersonAIO : MonoBehaviour
 
     private void Start()
     {
+       
         #region Look Settings - Start
 
         if (autoCrosshair || drawStaminaMeter)
@@ -348,10 +349,9 @@ public class FirstPersonAIO : MonoBehaviour
         #endregion
 
     }
-
     private void Update()
     {
-
+        
         #region Look Settings - Update
 
         if (enableCameraMovement && !controllerPauseState)

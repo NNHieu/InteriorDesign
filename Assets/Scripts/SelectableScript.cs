@@ -11,6 +11,7 @@ public class SelectableScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private Renderer myRenderer;
     private bool hasRenderer = false;
     private SelectionManager selectionManager;
+    private MainSystem mainSystem;
     // State variable
     private bool _selected = false;
     private bool _pointed = false;
@@ -24,9 +25,8 @@ public class SelectableScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         gameObject.tag = "Selectable";
         if(gameObject.GetComponent<Collider>() == null)
             gameObject.AddComponent<MeshCollider>();
-        selectionManager = FindObjectOfType<SelectionManager>();
 
-
+        mainSystem = FindObjectOfType<MainSystem>();
         myRenderer = gameObject.GetComponent<Renderer>();
         if (myRenderer != null)
         {
@@ -88,6 +88,10 @@ public class SelectableScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             highlightOutline.OutlineColor = Color.red;
         }
+        if (mainSystem != null)
+        {
+            mainSystem.addToSelectedObjects(this);
+        }
     }
 
     public void HandleDeselect()
@@ -96,6 +100,10 @@ public class SelectableScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (hasRenderer)
         {
             highlightOutline.OutlineColor = Color.yellow;
+        }
+        if (mainSystem != null)
+        {
+            mainSystem.removeFromSelectedObjects(this);
         }
     }
 

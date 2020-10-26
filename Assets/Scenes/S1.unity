@@ -819,55 +819,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5354966642846522802, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-        type: 3}
-      propertyPath: maxLaserDistance
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5354966642846522802, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-        type: 3}
-      propertyPath: shrinkLaser
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459958886424572351, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-        type: 3}
-      propertyPath: raycastMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459958886424572351, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-        type: 3}
-      propertyPath: overrideCameraRayIntersectionDistance
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459958886424572351, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-        type: 3}
-      propertyPath: overridePointerCamera
-      value: 
-      objectReference: {fileID: 1617842750}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}
---- !u!1 &617587614 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1264833946912854, guid: 2e62f5703e5f8d2488a5e1bc8433be41,
-    type: 3}
-  m_PrefabInstance: {fileID: 617587613}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &617587615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617587614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycasterEventMask:
-    serializedVersion: 2
-    m_Bits: 51
-  maxRaycastHits: 64
 --- !u!20 &643186869 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7365910561900648337, guid: 036678b2dcf2c7f368384b42afd56c3f,

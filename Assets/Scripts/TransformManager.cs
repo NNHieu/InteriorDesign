@@ -9,7 +9,7 @@ public class TransformManager : MonoBehaviour
     // Setting
 
     // 
-    private SelectionManager selectionManager;
+    private MainSystem selectionManager;
 
     // Const
     private Vector3[] vectors = new Vector3[3] { Vector3.right, Vector3.up, Vector3.forward };
@@ -26,7 +26,7 @@ public class TransformManager : MonoBehaviour
     void Start()
     {
         CurrentState = State.STOP;
-        coordinate = GameObject.Find("/CoordinateModel").GetComponent<Coordinate>();
+        coordinate = GetComponent<Coordinate>();
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class TransformManager : MonoBehaviour
         }
     }
 
-    public void init(SelectionManager selectionManager)
+    public void init(MainSystem selectionManager)
     {
         this.selectionManager = selectionManager;
         CurrentState = State.IDLE;
@@ -89,13 +89,15 @@ public class TransformManager : MonoBehaviour
             CurrentType = Type.TRANSLATION;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (selectionManager.ButtonDown())
         {
+            Debug.Log("Button down");
             CurrentState = State.RUNNING;
             PrepairRay();
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (selectionManager.ButtonUp())
         {
+            Debug.Log("Button up");
             CurrentState = State.IDLE;
         }
     }
