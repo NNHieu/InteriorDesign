@@ -12,6 +12,7 @@
 ** Set các đối tượng bức tường đặt được tranh với tag `Wall`
 ** Thêm script `Picture` (trong folder `Scripts`) cho các đối tượng là bức tranh.
 ** Trong chế độ Editor của Unity, chọn đối tượng có script `Picture`, sau đó trỏ chuột đến vị trí muốn đặt tranh, nhấn `B`.
+** Ctrl + Z để undo
 
 * Đổi nội dung tranh:  
 (Todo: Kéo thả image vào đối tượng `Picture`)
@@ -21,19 +22,19 @@
 Sử dụng trong chế độ Unity play
 * Có 2 chế độ:
 ** Editmode: Loại bỏ hiệu ứng của rigitBody và thêm các chức năng: di chuyển, xoay vật thể (chưa cài đặt scale)
-** ShowMode: Kích hoạt các hiệu ứng vật lý
-Chuyển đổi giữa 2 chế độ bằng cách nhấn `E`
+** ShowMode: Kích hoạt các hiệu ứng vật lý  
+Chuyển đổi giữa 2 chế độ bằng cách nhấn `E`  
 
-* Có 2 chế độ Camera chuyển đổi bằng cách nhấn `F`
-** FPS: Nhận vật di chuyển xung quanh căn phòng
-** TPS: Tương tự với camera của Unity Editor
+* Có 2 chế độ Camera chuyển đổi bằng cách nhấn `F`  
+** FPS: Nhận vật di chuyển xung quanh căn phòng  
+** TPS: Tương tự với camera của Unity Editor  
 
 * Selection:
 ** Thêm script `Selectable` cho các object có thể lựa chọn được
 ** Có thể lựa chọn 1 hoặc 1 nhóm các vật để tương tác
 
-* Chức năng trong Editmode:
-** Transform: Kích hoạt bằng phím `T`:
-*** `G` để chọn chức năng di chuyển
-*** `R` để chọn chức năng Rotation  
+* Chức năng trong Editmode:  
+** Transform: Kích hoạt bằng phím `T`:  
+*** `G` để chọn chức năng di chuyển  
+*** `R` để chọn chức năng Rotation   
 Sau khi chọn chức năng, nhấn giữ các phím x, y, z để chọn trục (Có thể nhấn 2 phím để di chuyển trên mặt phẳng), sau đó di chuyển chuột.
