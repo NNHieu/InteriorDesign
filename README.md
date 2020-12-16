@@ -8,7 +8,7 @@
 
 # Hướng dẫn sử dụng package 1
 * Đặt các bức tranh:  
-  * Yêu cầu ở chế độ editor, và [gizmos](https://www.google.com/url?sa=i&url=https%3A%2F%2Fdocs.unity3d.com%2FScriptReference%2FHandles.PositionHandle.html&psig=AOvVaw0M_JjxcOMWjhNRFeAXaaVM&ust=1608205180412000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJiFgbjX0e0CFQAAAAAdAAAAABAt) được bật
+  * Yêu cầu ở chế độ editor, và icon [gizmos](https://www.google.com/url? sa=i&url=https%3A%2F%2Fdocs.unity3d.com%2FScriptReference%2FHandles.PositionHandle.html&psig=AOvVaw0M_JjxcOMWjhNRFeAXaaVM&ust=1608205180412000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJiFgbjX0e0CFQAAAAAdAAAAABAt) được bật.
   * Set các đối tượng bức tường đặt được tranh với tag `Wall`
   * Thêm script `Picture` (trong folder `Scripts`) cho các đối tượng là bức tranh.
   * Trong chế độ Editor của Unity, chọn đối tượng có script `Picture`, sau đó trỏ chuột đến vị trí muốn đặt tranh, nhấn `B`.
