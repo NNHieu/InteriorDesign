@@ -13,7 +13,7 @@
   
  
 * Đặt các bức tranh:  
-  * Yêu cầu ở chế độ editor, và icon [gizmos](https://lh3.googleusercontent.com/proxy/y0cLst_y58xk96TxPRgbw7eCdabF719tLhFD9GvMa2dSzX8BBScegpNrAE_wLV3eLPJkJaCAUm1s_DbDIZFXaSUZPsM_OFHFtpEwoTrCcCkpvJhWSMxI) được bật.
+  * Yêu cầu ở chế độ Unity Editor, và icon [gizmos](https://lh3.googleusercontent.com/proxy/y0cLst_y58xk96TxPRgbw7eCdabF719tLhFD9GvMa2dSzX8BBScegpNrAE_wLV3eLPJkJaCAUm1s_DbDIZFXaSUZPsM_OFHFtpEwoTrCcCkpvJhWSMxI) được bật.
   * Set các đối tượng bức tường đặt được tranh với tag `Wall`
   * Thêm script `Picture` (trong folder `Scripts`) cho các đối tượng là bức tranh.
   * Trong chế độ Editor của Unity, chọn đối tượng có script `Picture`, sau đó trỏ chuột đến vị trí muốn đặt tranh, nhấn `B`.
