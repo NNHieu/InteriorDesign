@@ -7,8 +7,13 @@
 3. Import file unitypackage.
 
 # Hướng dẫn sử dụng package 1
+* Chon các scene trong folder `Scenes`
+  * Trong scene `Room01_light` có demo 2 kiểu thiết kế bằng đối tượng `----Env----\Design*`, toggle active để thay đổi.
+  * Scene `Room01_light` và `Room01_night` demo 2 môi trường ánh sáng khác nhau
+  
+ 
 * Đặt các bức tranh:  
-  * Yêu cầu ở chế độ editor, và icon [gizmos](https://www.google.com/url? sa=i&url=https%3A%2F%2Fdocs.unity3d.com%2FScriptReference%2FHandles.PositionHandle.html&psig=AOvVaw0M_JjxcOMWjhNRFeAXaaVM&ust=1608205180412000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJiFgbjX0e0CFQAAAAAdAAAAABAt) được bật.
+  * Yêu cầu ở chế độ editor, và icon [gizmos](https://lh3.googleusercontent.com/proxy/y0cLst_y58xk96TxPRgbw7eCdabF719tLhFD9GvMa2dSzX8BBScegpNrAE_wLV3eLPJkJaCAUm1s_DbDIZFXaSUZPsM_OFHFtpEwoTrCcCkpvJhWSMxI) được bật.
   * Set các đối tượng bức tường đặt được tranh với tag `Wall`
   * Thêm script `Picture` (trong folder `Scripts`) cho các đối tượng là bức tranh.
   * Trong chế độ Editor của Unity, chọn đối tượng có script `Picture`, sau đó trỏ chuột đến vị trí muốn đặt tranh, nhấn `B`.
@@ -22,12 +27,12 @@
 Sử dụng trong chế độ Unity play
 * Có 2 chế độ:
   * Editmode: Loại bỏ hiệu ứng của rigitBody và thêm các chức năng: di chuyển, xoay vật thể (chưa cài đặt scale)
-  * ShowMode: Kích hoạt các hiệu ứng vật lý  
+  * ShowMode: Kích hoạt các hiệu ứng vật lý, các vật sẽ rơi xuống
 Chuyển đổi giữa 2 chế độ bằng cách nhấn `E`  
 
 * Có 2 chế độ Camera chuyển đổi bằng cách nhấn `F`  
   * FPS: Nhận vật di chuyển xung quanh căn phòng  
-  * TPS: Tương tự với camera của Unity Editor  
+  * TPS: Tương tự với camera của Unity Editor
 
 * Selection:
   * Thêm script `Selectable` cho các object có thể lựa chọn được
